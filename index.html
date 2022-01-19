@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kalkulator</title>
+    <!-- <link rel="stylesheet" href="css/output.css"> -->
+    <link rel="stylesheet" href="deploy.css">
+</head>
+<body>
+   
+   <div class="flex justify-center flex-col md:mt-12 md:flex-row md:gap-2 lg:justify-evenly lg:mx-auto">
+       <div class="flex flex-col">
+        <img src="img/images.jpg" class="m-3 object-cover object-center anime min-h-fit rounded-lg border border-gray-600 shadow-gray-700 md:w-64 lg:w-96" alt="" srcset="">
+       </div>
+     <div class="mx-4"> 
+        <div class="w-full mx-auto bg-gray-800 border-2 border-gray-900 shadow-md rounded-lg m-4 shadow-gray-700 md:w-80 md:h-fit lg:max-w-xl">
+                <div class="border-b-2 border-gray-900">
+                    <input type="text" id="layar" value="0" readonly class="w-full bg-transparent p-8 rounded-t-lg outline-none focus:bg-gray-700 text-3xl text-right text-white">
+                </div>
+                <div class="p-6 text-gray-800 grid grid-cols-4 gap-4 text-xl">
+                    <button class="text-gray-800 col-span-2 bg-orange-400 rounded-full p-2 h-auto hover:bg-orange-500">
+                        C
+                    </button>
+                    <button class="text-gray-800 h-auto bg-orange-400 rounded-full p-2 hover:bg-orange-500"">
+                        <-
+                    </button>
+                    <button class="text-gray-800 bg-purple-400 rounded-full p-2 hover:bg-purple-500">
+                        /
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        1
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        2
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        3
+                    </button>
+                    <button class="text-gray-800 bg-purple-400 rounded-full p-2 hover:bg-purple-500">
+                        *
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        4
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        5
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        6
+                    </button>
+                    <button class="text-gray-800 bg-purple-400 rounded-full p-2 hover:bg-purple-500">
+                        -
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        7
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        8
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
+                        9
+                    </button>
+                    <button class="text-gray-800 bg-purple-400 rounded-full p-2 hover:bg-purple-500">
+                        &plus;
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300"">
+                        0
+                    </button>
+                    <button class="text-gray-800 bg-gray-200 rounded-full p-2 hover:bg-gray-300"">
+                        00
+                    </button>
+                    <button class="text-gray-800 col-span-2 bg-orange-400 rounded-full p-2 hover:bg-orange-500">
+                        =
+                    </button>
+                </div>
+            </div>
+        </div>
+        <img src="img/anime.jpg" class="m-3 object-cover object-center anime min-h-fit rounded-lg border border-gray-600 shadow-gray-700 md:w-64 md:h-fit lg:w-96" alt="" srcset="">
+   </div>
+</body>
+<script src="js/jkuery.js"></script>
+</html>
+<script>
+    // text view text-hasil view 1 view2 #hasil
+   let layar=document.getElementById('layar');
+   let btns =Array.from( document.getElementsByTagName('button') );
+  btns.map((btn)=>{
+    btn.addEventListener('click',(e)=>{
+        switch(e.target.innerText){
+            case 'C':
+                layar.value='0';
+                $('.anime').addClass('hidden');
+                $('.anime-lg').addClass('lg:hidden');
+                break;
+            case '<-':
+                if(layar.value){
+                    layar.value=layar.value.slice(0,-1);
+                    if(layar.value == ''){
+                        layar.value=0
+                        $('.anime').addClass('hidden');
+                        $('.anime-lg').addClass('lg:hidden');
+                    }
+                }
+                break;  
+            case '=':
+                    try {
+                        layar.value=eval(layar.value);
+                    } catch (error) {
+
+                        layar.value='Oni Chan Baka!!';
+                        $('.anime').removeClass('hidden');
+                        $('.anime-lg').removeClass('lg:hidden');
+                    }
+                break;      
+            default :
+                    if(layar.value == '0'){
+                        layar.value='';
+                    }
+            layar.value += e.target.innerText;
+        }
+    })
+  })
+</script>
